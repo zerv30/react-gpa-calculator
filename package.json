@@ -1,5 +1,6 @@
 {
   "name": "react-gpa-calculator",
+  "homepage" : "https://zerv30.github.io/react-gpa-calculator/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
