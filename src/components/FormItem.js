@@ -8,8 +8,6 @@ class FormItem extends React.Component{
             gradePoints:'4',
             units:0
         }
-    }
-
     updateGradePoints = (event)=> {
         this.setState({gradePoints:event.target.value},()=>{
             this.gradePoints()
