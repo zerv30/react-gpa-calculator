@@ -5,8 +5,6 @@ class GpaForm extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            gradeValue:'',
-            units:0,
             gradeArray:[],
             formItems:[]
         }
@@ -14,7 +12,6 @@ class GpaForm extends React.Component{
     
     addNewCourse = ()=>{
         let index = this.state.formItems.length 
-            console.log(index)
             let getData = (data)=>{
                 let newGradeArray = [...this.state.gradeArray]
                 newGradeArray[index] = data
@@ -31,12 +28,11 @@ class GpaForm extends React.Component{
         })
     }
     calcGPA = ()=>{
-        console.log('hi there')
         let totalGradePoints = 0;
         let totalUnits = 0
         totalGradePoints = this.state.gradeArray.reduce((total,current)=> total+( current.gradePoints* current.units),0)
         totalUnits  = this.state.gradeArray.reduce((total,current)=> total+current.units,0)
-        return totalUnits ? (totalGradePoints / totalUnits).toFixed(2) : 0
+        return totalUnits ? (totalGradePoints / totalUnits).toFixed(2) : 0.00
     }
     componentDidMount() {
         this.addNewCourse()
