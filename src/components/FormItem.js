@@ -10,7 +10,7 @@ class FormItem extends React.Component{
         }
     }
 
-    handleChange = (event)=> {
+    updateGradePoints = (event)=> {
         this.setState({gradePoints:event.target.value},()=>{
             this.gradePoints()
         });
@@ -37,7 +37,7 @@ render(){
                 </div>
                 
                 <span className="col">
-                    <select  onChange={this.handleChange} className="form-control" name="Grades">
+                    <select  onChange={this.updateGradePoints} className="form-control" name="Grades">
                         <option value="4.0">A+</option>
                         <option value="4.0">A</option>
                         <option value="3.7">A-</option>
@@ -45,16 +45,16 @@ render(){
                         <option value="3.0">B</option>
                         <option value="2.7">B-</option>
                         <option value="2.3">C+</option>
-                        <option value="0.0">F</option>
                         <option value="2.0">C</option>
                         <option value="1.7">C-</option>
                         <option value="1.3">D+</option>
                         <option value="1.0">D</option>
                         <option value="0.7">D-</option>
+                        <option value="0.0">F</option>
                     </select>
                 </span>
                 <div className="col">
-                    <input name="units" onChange={this.updateUnits} className="form-control" type="number"/>
+                    <input name="units" onChange={this.updateUnits} className="form-control" type="number" min="0" />
                 </div>
                 </div>
         )
