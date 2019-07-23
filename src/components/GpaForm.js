@@ -30,8 +30,13 @@ class GpaForm extends React.Component{
     calcGPA = ()=>{
         let totalGradePoints = 0;
         let totalUnits = 0
-        totalGradePoints = this.state.gradeArray.reduce((total,current)=> total+( current.gradePoints* current.units),0)
-        totalUnits  = this.state.gradeArray.reduce((total,current)=> total+current.units,0)
+        this.state.gradeArray.forEach(element => {
+            if(element){
+            totalGradePoints += element.gradePoints* element.units
+            totalUnits += element.units
+            }
+            
+        });
         return totalUnits ? (totalGradePoints / totalUnits).toFixed(2) : 0.00
     }
     componentDidMount() {
@@ -39,7 +44,7 @@ class GpaForm extends React.Component{
     }
     render(){
         return (
-            <div className="row">
+            <div className="row gpa-form">
                 <div className="col-12">
                     
                     <div className="row">
@@ -48,7 +53,7 @@ class GpaForm extends React.Component{
                         <span className="col">Units</span>
                     </div>
                 </div>
-            <form className="col-12">
+            <form className="col-12 ">
             {this.state.formItems}
 
             </form>

@@ -28,28 +28,37 @@ class FormItem extends React.Component{
             units:this.state.units
         }
         this.props.sendGradePoints(data)
-        // return this.state.gradePoints * this.state.units
     }
 render(){
-    return(
-            <div className="row  form-group">
-            <div className="col">
-                <input className="form-control" />
-            </div>
-            
-            <span className="col">
-                <select  onChange={this.handleChange} className="form-control" name="Grades">
-                    <option value="4">A</option>
-                    <option value="3">B</option>
-                    <option value="2">C</option>
-                    <option value="1">D</option>
-                </select>
-            </span>
-            <div className="col">
-                <input name="units" onChange={this.updateUnits} className="form-control" type="number"/>
-            </div>
-            </div>
-    )
+        return(
+                <div className="row  form-group">
+                <div className="col">
+                    <input className="form-control" />
+                </div>
+                
+                <span className="col">
+                    <select  onChange={this.handleChange} className="form-control" name="Grades">
+                        <option value="4.0">A+</option>
+                        <option value="4.0">A</option>
+                        <option value="3.7">A-</option>
+                        <option value="3.3">B+</option>
+                        <option value="3.0">B</option>
+                        <option value="2.7">B-</option>
+                        <option value="2.3">C+</option>
+                        <option value="0.0">F</option>
+                        <option value="2.0">C</option>
+                        <option value="1.7">C-</option>
+                        <option value="1.3">D+</option>
+                        <option value="1.0">D</option>
+                        <option value="0.7">D-</option>
+                    </select>
+                </span>
+                <div className="col">
+                    <input name="units" onChange={this.updateUnits} className="form-control" type="number"/>
+                </div>
+                </div>
+        )
+    
 }
 
 
