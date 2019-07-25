@@ -20,7 +20,7 @@ class GpaForm extends React.Component{
                 })
             }
         this.setState((state)=>{
-            let newElement = <FormItem sendGradePoints={getData} />  
+            let newElement = < FormItem key={index} sendGradePoints={getData} />  
             let formItems= [...this.state.formItems,newElement]
             return{
                 ...state,formItems
@@ -32,8 +32,8 @@ class GpaForm extends React.Component{
         let totalUnits = 0
         this.state.gradeArray.forEach(element => {
             if(element){
-            totalGradePoints += element.gradePoints* element.units
-            totalUnits += element.units
+                totalGradePoints += element.gradePoints* element.units
+                totalUnits += element.units
             }
             
         });
