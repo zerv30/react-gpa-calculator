@@ -17,7 +17,7 @@ class FormItem extends React.Component{
 
     }
     updateUnits = (event)=>{
-        let regex = new RegExp('^[0-9]+$')
+        let regex = new RegExp('^[0-9]+$|^$|^\s$')
 		if(regex.test(event.target.value)){
             this.setState({units:Number(event.target.value)},()=>{
                 this.gradePoints()
@@ -56,7 +56,7 @@ class FormItem extends React.Component{
                     </select>
                 </span>
                 <div className="col">
-                    <input name="units" onChange={this.updateUnits} className="form-control" value={this.state.units} type="number" min="0" />
+                    <input name="units" onChange={this.updateUnits} className="form-control" value={this.state.units}  min="0" />
                 </div>
             </div>
         )
