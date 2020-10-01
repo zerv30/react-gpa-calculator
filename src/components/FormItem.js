@@ -11,7 +11,7 @@ class FormItem extends React.Component{
     }
     updateGradePoints = (event)=> {
         this.setState({gradePoints:event.target.value},()=>{
-            this.gradePoints()
+            this.sendGradePoints()
         });
         
 
@@ -20,11 +20,11 @@ class FormItem extends React.Component{
         let regex = new RegExp('^[0-9]+$|^$|^\s$')
 		if(regex.test(event.target.value)){
             this.setState({units:Number(event.target.value)},()=>{
-                this.gradePoints()
+                this.sendGradePoints()
             });
 		}
     }
-    gradePoints = ()=>{
+    sendGradePoints = ()=>{
         let data = {
             gradePoints:this.state.gradePoints,
             units:this.state.units
