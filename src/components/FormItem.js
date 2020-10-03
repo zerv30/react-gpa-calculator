@@ -1,37 +1,42 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 
 
-class FormItem extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
-            gradePoints:'4',
-            units:0
-        }
-    }
-    updateGradePoints = (event)=> {
-        this.setState({gradePoints:event.target.value},()=>{
-            this.sendGradePoints()
-        });
+function  FormItem (props){
+    const [gradePoints,setGradePoints] = useState('4')
+    const [units,setUnits] = useState(0)
+
+    useEffect(() => {
+        sendGradePoints()
+      }, [units,gradePoints]);
+    
+
+    let updateGradePoints = (event)=> {
+        setGradePoints(event.target.value)
+
+        // this.setState({gradePoints:event.target.value},()=>{
+        //     this.sendGradePoints()
+        // });
         
 
     }
-    updateUnits = (event)=>{
+    let updateUnits = (event)=>{
         let regex = new RegExp('^[0-9]+$|^$|^\s$')
 		if(regex.test(event.target.value)){
-            this.setState({units:Number(event.target.value)},()=>{
-                this.sendGradePoints()
-            });
+            console.log(units)
+            setUnits(Number(event.target.value))
+            // this.setState({units:Number(event.target.value)},()=>{
+            //     this.sendGradePoints()
+            // });
 		}
     }
-    sendGradePoints = ()=>{
+    let sendGradePoints = ()=>{
         let data = {
-            gradePoints:this.state.gradePoints,
-            units:this.state.units
+            gradePoints:gradePoints,
+            units:units
         }
-        this.props.sendGradePoints(data)
+        props.sendGradePoints(data)
     }
-    render(){
+    // render(){
         return(
             <div className="row  form-group">
                 <div className="col">
@@ -39,7 +44,7 @@ class FormItem extends React.Component{
                 </div>
             
                 <span className="col">
-                    <select  onChange={this.updateGradePoints} className="form-control" name="Grades">
+                    <select  onChange={updateGradePoints} className="form-control" name="Grades">
                         <option value="4.0">A+</option>
                         <option value="4.0">A</option>
                         <option value="3.7">A-</option>
@@ -56,10 +61,10 @@ class FormItem extends React.Component{
                     </select>
                 </span>
                 <div className="col">
-                    <input name="units" onChange={this.updateUnits} className="form-control" value={this.state.units}  min="0" />
+                    <input name="units" onChange={updateUnits} className="form-control" value={units}  min="0" />
                 </div>
             </div>
         )
-    }
+    // }
 }
 export default FormItem;
