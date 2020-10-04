@@ -1,36 +1,34 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import FormItem from './FormItem'
 // import { stat } from 'fs';
-class GpaForm extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
-            gradeArray:[],
-            formItems:[]
-        }
-    }
+function  GpaForm (props){
+    const [gradeArray,setGradeArray] = useState([])
+    const [formItems,setFormItems] = useState([])
+    // constructor(props){
+    //     super(props)
+    //     this.state={
+    //         gradeArray:[],
+    //         formItems:[]
+    //     }
+    // }
     
-    addNewCourse = ()=>{
-        let index = this.state.formItems.length 
+    let addNewCourse = ()=>{
+        let index = formItems.length 
             let getData = (data)=>{
-                let newGradeArray = [...this.state.gradeArray]
-                newGradeArray[index] = data
-                this.setState({
-                    gradeArray:newGradeArray
-                })
+                let updatedGradeArray = [...gradeArray]
+                updatedGradeArray[index] = data
+                setGradeArray(updatedGradeArray)
+               
             }
-        this.setState((state)=>{
             let newElement = < FormItem key={index} sendGradePoints={getData} />  
-            let formItems= [...this.state.formItems,newElement]
-            return{
-                ...state,formItems
-            }
-        })
+            let updatedFormItems= [...formItems,newElement]
+            setFormItems(updatedFormItems)
+      
     }
-    calcGPA = ()=>{
+    let calcGPA = ()=>{
         let totalGradePoints = 0;
         let totalUnits = 0
-        this.state.gradeArray.forEach(element => {
+        gradeArray.forEach(element => {
             if(element){
                 totalGradePoints += element.gradePoints* element.units
                 totalUnits += element.units
@@ -39,10 +37,7 @@ class GpaForm extends React.Component{
         });
         return totalUnits ? (totalGradePoints / totalUnits).toFixed(2) : 0.00
     }
-    componentDidMount() {
-        this.addNewCourse()
-    }
-    render(){
+   
         return (
             <div className="row gpa-form">
                 <div className="col-12">
@@ -54,14 +49,14 @@ class GpaForm extends React.Component{
                     </div>
                 </div>
             <form className="col-12 ">
-            {this.state.formItems}
+            {formItems}
 
             </form>
-            <button className="btn badge-primary mr-auto ml-auto mb-3" onClick={this.addNewCourse} >Add new course</button>
-            <div className="col-12 h1">Gpa: {this.calcGPA()}</div>
+            <button className="btn badge-primary mr-auto ml-auto mb-3" onClick={addNewCourse} >Add new course</button>
+            <div className="col-12 h1">Gpa: {calcGPA()}</div>
             </div>
         )
-    }
+    // }
 
 }
 export default GpaForm;
