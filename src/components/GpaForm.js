@@ -4,13 +4,7 @@ import FormItem from './FormItem'
 function  GpaForm (props){
     const [gradeArray,setGradeArray] = useState([])
     const [formItems,setFormItems] = useState([])
-    // constructor(props){
-    //     super(props)
-    //     this.state={
-    //         gradeArray:[],
-    //         formItems:[]
-    //     }
-    // }
+
     
     let addNewCourse = ()=>{
         let index = formItems.length 
